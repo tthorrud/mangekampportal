@@ -30,9 +30,26 @@ var Discipline = Backbone.Model.extend({
 var Disciplines = Backbone.Collection.extend({
 
     model: Discipline,
-    url: 'http://localhost:8080/rest/disciplines'
+    url: 'http://localhost:8080/rest/disciplines',
 
+    fetch : function() {
+        // store reference for this collection
+        var collection = this;
+        $.ajax({
+            type : 'GET',
+            url : this.url,
+            dataType : 'json',
+            crossDomain: true,
+            success : function(data) {
+                console.log(data);
+                // set collection data (assuming you have retrieved a json object)
+                //collection.reset(data)
+            }
+        });
+    }
 });
+
+
 
 var Disciplines = new Disciplines();
 Disciplines.fetch();
