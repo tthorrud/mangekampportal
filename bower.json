@@ -1,0 +1,29 @@
+{
+  "name": "mangekampportal",
+  "version": "0.0.0",
+  "homepage": "https://github.com/tthorrud/mangekampportal",
+  "authors": [
+    "torbein <torbein.rein@gmail.com>"
+  ],
+  "description": "Modernisering av Mangekampportalen",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.2",
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "require": "*",
+    "underscore": "~1.8.3"
+  }
+}

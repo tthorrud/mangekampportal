@@ -1,6 +1,7 @@
 {
   "name": "mangekampportal",
   "version": "0.0.0",
+  "private": true,
   "description": "Mangekamp Portal",
   "main": "main.js",
   "scripts": {
