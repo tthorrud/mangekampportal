@@ -1,55 +1,65 @@
 /**
  * Created by thorstein on 26.08.15.
  */
+//http://localhost:8080/rest/disciplines
+'use strict'
+/*
+    id:1,
+    name:"",
+    description:"",
+    category:"",
+    resultFormat:"",
+    pictogram:""
+*/
 
+var disciplineModel = Backbone.Model.extend({
 
-var MainView = Backbone.View.extend({
-el: '#mainView',
-
-    initialize: function(){
-    this.render();
-},
-
-render: function(){
-    this.$el.html("Hello world")
-}
 
 });
 
-var m = new MainView();
+var disciplinesCollection = Backbone.Collection.extend({
+    
+    model: disciplineModel,
+    url: "http://localhost:8080/rest/disciplines",
 
-var Discipline = Backbone.Model.extend({
-
-    defaults:{
-        name: ""
-
-    }
-
+    
 });
 
-var Disciplines = Backbone.Collection.extend({
 
-    model: Discipline,
-    url: 'http://localhost:8080/rest/disciplines',
+/*var ItemView = Backbone.View.extend({
+    el:'#list',
+    tagName:'ul'
 
-    fetch : function() {
-        // store reference for this collection
-        var collection = this;
-        $.ajax({
-            type : 'GET',
-            url : this.url,
-            dataType : 'json',
-            crossDomain: true,
-            success : function(data) {
-                console.log(data);
-                // set collection data (assuming you have retrieved a json object)
-                //collection.reset(data)
-            }
-        });
+    render: function(){
+        console.log(disciplines);
+        this.$el.html(disciplines);
     }
 });
+*/
+var c = new disciplinesCollection();
 
 
+var v = Backbone.View.extend({
+    el : '#mydiv',
+    template : _.template($("#details").html()),
+    initialize : function() {
+        var self = this;
+        this.coll = new disciplinesCollection(); 
+        this.coll.fetch({ 
+        success: function() { 
+            console.log(self.coll);
+            self.render();
+        },
+        error: function() {
+            console.log("D");
+        } 
+        });              
+    },
+    render : function() {
+      // the persons will be "visible" in your template
+      this.$el.html(this.template({ persons: this.coll.toJSON() }));
+      return this;
+    }
+});
 
-var Disciplines = new Disciplines();
-Disciplines.fetch();
+var view = new v();

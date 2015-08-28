@@ -3,11 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>hello-backbonejs</title>
-
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
   </head>
   <body>
-  <div id="mainView"></div>
+    <div class="container">
+  <div id="mydiv" class="jumbotron">
+   <script type="text/template" id="details">
+  <ul class="list-group"> 
+    <% _.each(persons, function(person)  { %>
+      <li class="list-group-item"><%= person.name %></li>
+    <% }); %>
+  </ul>
+</script>
+  </div>
 
+</div>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore-min.js"></script>
     <script src="bower_components/backbone/backbone-min.js"></script>
@@ -15,6 +26,6 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="main.js"></script>
 
-
+ 
   </body>
   </html>
