@@ -25,4 +25,5 @@ coverage
 node_modules
 bower_components
 
-
+#IDEA foler
+.idea
