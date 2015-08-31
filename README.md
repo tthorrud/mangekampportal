@@ -3,16 +3,14 @@ Ny mangekampen applikasjon.
 Installer chrome extension: 
 	https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?utm_source=chrome-app-launcher-info-dialog
 
-Last ned:
-- nodejs
-- npm
-- bower
+Installer nodejs og npm
+	sudo apt-get install nodejs
+	sudo apt-get install npm
 
-Kjør disse kommandoene:
-- npm install -g grunt-cli
-- npm install
-- bower install
-- grunt
+Installer bower og grunt
+	npm install -g bower
+	npm install -g grunt-cli
 
-
-
+Installer så alle lokale avhengigheter
+	npm install
+	bower install
