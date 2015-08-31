@@ -7,24 +7,20 @@
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
   </head>
   <body>
-    <div class="container">
-  <div id="mydiv" class="jumbotron">
-   <script type="text/template" id="details">
-  <ul class="list-group"> 
-    <% _.each(disciplines, function(discipline)  { %>
-      <li class="list-group-item"><%= discipline.name %></li>
-    <% }); %>
-  </ul>
-</script>
+
+
+<section id="disciplinesapp">
+
+  <div class="container">
+
   </div>
 
-</div>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/underscore/underscore-min.js"></script>
-    <script src="bower_components/backbone/backbone-min.js"></script>
-    <script src="bower_components/require/build/require.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="app/main.js"></script>
+</section>
+
+
+
+
+    <script data-main="app/main" src="bower_components/requirejs/require.js"></script>
 
  
   </body>

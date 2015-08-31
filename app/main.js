@@ -1,65 +1,41 @@
-/**
- * Created by thorstein on 26.08.15.
- */
+
 //http://localhost:8080/rest/disciplines
-'use strict'
-/*
-    id:1,
-    name:"",
-    description:"",
-    category:"",
-    resultFormat:"",
-    pictogram:""
-*/
+'use strict';
 
-var disciplineModel = Backbone.Model.extend({
+    require.config({
 
-
-});
-
-var disciplinesCollection = Backbone.Collection.extend({
-    
-    model: disciplineModel,
-    url: "http://localhost:8080/rest/disciplines",
-
-    
-});
-
-
-/*var ItemView = Backbone.View.extend({
-    el:'#list',
-    tagName:'ul'
-
-    render: function(){
-        console.log(disciplines);
-        this.$el.html(disciplines);
-    }
-});
-*/
-var c = new disciplinesCollection();
-
-
-var v = Backbone.View.extend({
-    el : '#mydiv',
-    template : _.template($("#details").html()),
-    initialize : function() {
-        var self = this;
-        this.coll = new disciplinesCollection(); 
-        this.coll.fetch({ 
-        success: function() { 
-            console.log(self.coll);
-            self.render();
+        shim: {
+            exports: '-'
         },
-        error: function() {
-            console.log("D");
-        } 
-        });              
-    },
-    render : function() {
-      // the persons will be "visible" in your template
-      this.$el.html(this.template({ disciplines: this.coll.toJSON() }));
-      return this;
+        backbone: {
+            deps: [
+                'underscore',
+                'jquery'
+            ],
+            exports: 'Backbone'
+        },
+
+    paths: {
+        jquery: '../bower_components/jquery/dist/jquery',
+        underscore: '../bower_components/underscore/underscore',
+        backbone: '../bower_components/backbone/backbone',
+        text: '../node_modules/requirejs-text/text'
+
     }
+
 });
 
-var view = new v();
+
+
+require([
+    'backbone',
+    'app',
+    'routers/router'
+], function (Backbone, AppView, Workspace) {
+
+    new Workspace();
+    Backbone.history.start();
+
+    new AppView();
+
+});
