@@ -57,7 +57,7 @@ var v = Backbone.View.extend({
     },
     render : function() {
       // the persons will be "visible" in your template
-      this.$el.html(this.template({ persons: this.coll.toJSON() }));
+      this.$el.html(this.template({ disciplines: this.coll.toJSON() }));
       return this;
     }
 });
