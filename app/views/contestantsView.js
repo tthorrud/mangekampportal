@@ -28,8 +28,14 @@ define([
             });
         },
         render: function () {
+            var newDate = function (date) {
+                var tempDate = new Date(date);
+                return ("0" + tempDate.getDate()).slice(-2) + '.' + ("0" + (tempDate.getMonth() + 1)).slice(-2) + '.' + tempDate.getFullYear();
+            };
+
+
             // the disciplines will be "visible" in your template
-            this.$el.html(this.template({contestants: this.coll.toJSON()}));
+            this.$el.html(this.template({contestants: this.coll.toJSON(), formatDate: newDate}));
             return this;
         }
     });
