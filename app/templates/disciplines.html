@@ -1,9 +1,7 @@
-<div id="mydiv" class="jumbotron">
-    <script type="text/template" id="details">
-        <ul class="list-group">
-            <% _.each(disciplines, function(discipline)  { %>
-            <li class="list-group-item"><%= discipline.name %></li>
-            <% }); %>
-        </ul>
-    </script>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <% _.each(disciplines, function(discipline){ %>
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default"><%= discipline.name %></button>
+    </div>
+    <%});%>
 </div>

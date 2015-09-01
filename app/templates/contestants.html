@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Brukernavn</th>
+                <th>E-post</th>
+                <th>Fødselsdag</th>
+                <th>Klesstørrelse</th>
+                <th>Klasse</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% _.each(contestants, function(contestant) { %>
+        <tr>
+            <th><%= contestant.fullName %></th>
+            <th><%= contestant.username %></th>
+            <th><%= contestant.email %></th>
+            <th><%= contestant.birthdate %></th>
+            <th><%= contestant.size %></th>
+            <th><%= contestant.division %></th>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>

@@ -1,17 +1,18 @@
+'use strict';
 
-    define([
-        '../../bower_components/underscore/underscore',
-        'backbone',
-        'models/disciplines'
-    ], function (_, Backbone, disciplineModel) {
-        'use strict';
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'model/discipline'
+], function (jquery, _, Backbone, Discipline) {
 
-        var disciplinesCollection = Backbone.Collection.extend({
+    var Disciplines = Backbone.Collection.extend({
 
-            model: disciplineModel,
-            url: "http://localhost:8080/rest/disciplines",
-        });
-
-        return new disciplinesCollection();
-
+        model: Discipline,
+        url: "http://localhost:8080/rest/disciplines"
     });
+
+    return Disciplines;
+
+});

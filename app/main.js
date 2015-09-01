@@ -1,41 +1,36 @@
-
-//http://localhost:8080/rest/disciplines
 'use strict';
 
-    require.config({
-
-        shim: {
-            exports: '-'
+require.config({
+    shim: {
+        underscore: {
+            exports: '_'
         },
         backbone: {
             deps: [
                 'underscore',
                 'jquery'
-            ],
-            exports: 'Backbone'
+            ]
         },
-
+        exports: 'Backbone'
+    },
     paths: {
         jquery: '../bower_components/jquery/dist/jquery',
         underscore: '../bower_components/underscore/underscore',
         backbone: '../bower_components/backbone/backbone',
-        text: '../node_modules/requirejs-text/text'
-
+        text: '../bower_components/requirejs-text/text'
     }
-
 });
-
 
 
 require([
     'backbone',
     'app',
-    'routers/router'
-], function (Backbone, AppView, Workspace) {
+    'router'
+], function (Backbone, AppView, Router) {
 
-    new Workspace();
+    new Router();
     Backbone.history.start();
 
-    new AppView();
+   new AppView();
 
 });

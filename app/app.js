@@ -1,16 +1,22 @@
+'use strict';
+
+
 define([
     'jquery',
     'underscore',
-    'backbone',
-    'views/disciplines',
-    'collections/disciplines'
-], function (_, Backbone, disciplinesView, disciplinesCollection) {
-    'use strict';
+    'backbone'
+], function (jquery, _, Backbone) {
 
     var AppView = Backbone.View.extend({
-        el: '#disciplinesapp'
+
+        el: '#app',
+
+        initialize: function(){
+
+        }
 
     });
 
     return AppView;
+
 });
