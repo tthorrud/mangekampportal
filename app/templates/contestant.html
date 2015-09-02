@@ -11,16 +11,14 @@
             </tr>
         </thead>
         <tbody>
-        <% _.each(contestants, function(contestant) { %>
         <tr>
             <th><a href="#contestant/<%= contestant.id %>"><%= contestant.fullName %></a></th>
             <th><%= contestant.username %></th>
             <th><%= contestant.email %></th>
-            <th><%= formatDate(contestant.birthdate) %></th>
+            <th><%= contestant.birthdate %></th>
             <th><%= contestant.size %></th>
             <th><%= contestant.division %></th>
         </tr>
-        <% }); %>
         </tbody>
     </table>
 </div>
