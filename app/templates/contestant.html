@@ -1,24 +1,75 @@
-<div class="panel panel-default">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Navn</th>
-                <th>Brukernavn</th>
-                <th>E-post</th>
-                <th>Fødselsdag</th>
-                <th>Klesstørrelse</th>
-                <th>Klasse</th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th><a href="#contestant/<%= contestant.id %>"><%= contestant.fullName %></a></th>
-            <th><%= contestant.username %></th>
-            <th><%= contestant.email %></th>
-            <th><%= contestant.birthdate %></th>
-            <th><%= contestant.size %></th>
-            <th><%= contestant.division %></th>
-        </tr>
-        </tbody>
-    </table>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Brukernavn:</label>
+
+                        <div class="col-sm-10">
+                            <p class="form-control-static"><%= contestant[0].contestant.username %></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">E-post:</label>
+
+                        <div class="col-sm-10">
+                            <p class="form-control-static"><%= contestant[0].contestant.email %></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Alternativ e-post for påminnelser:</label>
+
+                        <div class="col-sm-10">
+                            <p class="form-control-static"><%= (contestant[0].contestant.alternativeEmail === '') ?
+                                'Ingen alternativ e-post registrert': contestant[0].contestant.alternativeEmail %></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Klasse:</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static"><%= contestant[0].contestant.division %></p>
+                        </div>
+                    </div>
+                    <div class="btn-group-sm ">
+                        <button class="btn btn-default" type="submit">Gjør admin</button>
+                        <button class="btn btn-default" type="submit">Deaktiver bruker</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Tidligere resultater</h3>
+            </div>
+            <div class="row panel-body">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Øvelse</th>
+                        <th>Plassering</th>
+                        <th>Resultat</th>
+                        <th>År</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% _.each(contestant, function(contestant) { %>
+                    <tr>
+                        <th><%= contestant.contest.discipline.name %></th>
+                        <th><%= contestant.rank %></th>
+                        <th><%= contestant.score %></th>
+                        <th><%= contestant.contest.year %></th>
+                    </tr>
+                    <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

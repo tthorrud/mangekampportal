@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 define([
     'underscore',
@@ -12,16 +12,27 @@ define([
             template: _.template(ContestantTemplate),
 
             initialize: function(id) {
-                var contestant = new Contestant();
-                contestant.fetch({url: "http://localhost:8080/rest/contestants/"+id});
-                console.log(contestant);
-            }, 
+                var self = this;
+                this.contestant = new Contestant({id:id});
+                this.contestant.fetch(
+                    {success: function () {
+                        self.render();
+                    },
+                    error:function (){
+                        console.log('Error');
+                    }});
+            },
 
             render: function() {
-                // the disciplines will be "visible" in your template
-                this.$el.html(this.template({contestant: this.coll.toJSON()}));
+                var contestant_results = [];
+
+                for(var key in this.contestant.attributes) {
+                    contestant_results[key] = this.contestant.attributes[key];
+                }
+
+                this.$el.html(this.template({contestant: contestant_results}));
                 return this;
-            },
+            }
 
 
         });
