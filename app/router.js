@@ -6,14 +6,16 @@ define([
     'backbone',
     'views/disciplinesView',
     'views/contestantsView',
-    'views/navigationView'
-], function (jquery, _, Backbone, DisciplineView, ContestantsView, NavigationView) {
+    'views/navigationView',
+    'views/contestsView'
+], function (jquery, _, Backbone, DisciplineView, ContestantsView, NavigationView, ContestsView) {
 
     var Router = Backbone.Router.extend({
 
         routes: {
             '': 'disciplinesView',
-            'contestants': 'contestantsView'
+            'contestants': 'contestantsView',
+            'contests': 'contestsView'
         },
 
         initialize: function () {
@@ -29,6 +31,10 @@ define([
         contestantsView: function () {
             var contestantsView = new ContestantsView();
             return contestantsView;
+        },
+        contestsView: function () {
+            var contestsView = new ContestsView();
+            return contestsView;
         }
     });
 
