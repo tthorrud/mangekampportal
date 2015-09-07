@@ -18,9 +18,11 @@ define([
         model: Discipline,
         collection: Disciplines,
 
+
         events: {
             "click #submit": "addDiscipline",
-            "on input:change": "onPiktogramSelect"
+            'change input[type=radio]': 'onSelectedPictogram'
+//            "click input": "onSelectedPictogram"
         },
 
         initialize: function() {
@@ -37,8 +39,6 @@ define([
         },
 
         render: function () {
-
-            console.log(this.collection.toJSON());
             this.$el.html(this.template({disciplines: this.collection.toJSON()}));
             return this;
         },
@@ -49,10 +49,12 @@ define([
                 "description":jquery('#discipline_description').val(),
                 "category":jquery('#discipline_category').val(),
                 "resultFormat":jquery('#discipline_resultFormat').val(),
-                "pictogram":"BADMINTON"
+                "pictogram": 'BADMINTON'
             });
 
-            discipline.save(discipline,{
+
+            console.log(discipline);
+            discipline.save({
                 success: function(response){
                     console.log(response);
                 },
@@ -61,10 +63,10 @@ define([
                 }});
         },
 
-        onPiktogramSelect: function(){
-            var v = this.val();
-            console.log(v);
-        }
+         onSelectedPictogram: function(){
+            this.selectedPictogram = jquery('input[type=radio]:checked').val();
+            console.log(this.selectedPictogram);
+         }
     });
 
     return AddDisciplineView;
