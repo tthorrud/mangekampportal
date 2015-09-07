@@ -10,7 +10,7 @@ define([
     'mainView/mainView',
     'views/contestantView',
     'views/scoreboardView'
-], function (jquery, _, Backbone, DisciplineView, ContestantsView, NavigationView, ContestantView, ScoreboardView) {
+], function (jquery, _, Backbone, DisciplineView, ContestantsView, NavigationView, MainView, ContestantView, ScoreboardView) {
 
 
     var Router = Backbone.Router.extend({

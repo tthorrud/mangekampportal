@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel-default container-fluid">
     <table class="table">
         <thead>
         <tr>
@@ -7,8 +7,21 @@
             <th>Snitt</th>
             <th>Antall</th>
         <% _.each(scoreboard.disciplines, function(discipline) { %>
-            <th><%= discipline.name %></th>
-        <% }); %>
+
+
+
+            <% if (discipline.category === "ENDURANCE"){ %>
+            <th bgcolor="#FF6699"> <%= discipline.name %> </th>
+
+            <% }else if (discipline.category === "TECHNIQUE"){ %>
+            <th bgcolor="#99ff99"> <%= discipline.name %> </th>
+
+            <% } else { %>
+            <th bgcolor="#99CCFF"> <%= discipline.name %> </th>
+            <% } %>
+
+
+            <% }); %>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +33,20 @@
             <th><%= parseFloat((scoreboardRow.finalScore).toFixed(2)) %></th>
             <th><%= scoreboardRow.count %></th>
             <th><%= scoreboardRow.participations[0].rank %></th>
+            <th><%= scoreboardRow.participations[1].rank %></th>
+            <th><%= scoreboardRow.participations[2].rank %></th>
+            <th><%= scoreboardRow.participations[3].rank %></th>
+            <th><%= scoreboardRow.participations[4].rank %></th>
+            <th><%= scoreboardRow.participations[5].rank %></th>
+            <th><%= scoreboardRow.participations[6].rank %></th>
+            <th><%= scoreboardRow.participations[7].rank %></th>
+            <th><%= scoreboardRow.participations[8].rank %></th>
+            <th><%= scoreboardRow.participations[9].rank %></th>
+            <th><%= scoreboardRow.participations[10].rank %></th>
+            <th><%= scoreboardRow.participations[11].rank %></th>
+            <th><%= scoreboardRow.participations[12].rank %></th>
+            <th><%= scoreboardRow.participations[13].rank %></th>
+
 
             <% }); %>
 
