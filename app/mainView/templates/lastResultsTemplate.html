@@ -6,5 +6,26 @@
 </head>
 <body>
 
+<div class="panel panel-info">
+    <div class="panel-heading"><strong>Nyeste Resultater</strong></div>
+    <div class="panel-body">
+        <p><strong>Jenter - <%= lastResults.WOMEN[0].contest.discipline.name %> - <%= getDate(lastResults.WOMEN[0].contest.date) %></strong></p>
+        <p> <%= lastResults.WOMEN[0].contestant.fullName %></p>
+        <p><%= lastResults.WOMEN[1].contestant.fullName %></p>
+        <p><%= lastResults.WOMEN[2].contestant.fullName %></p>
+
+        <p><strong>Gutter - <%= lastResults.MEN[0].contest.discipline.name %> - <%= getDate(lastResults.MEN[0].contest.date) %></strong></p>
+        <p><%= lastResults.MEN[0].contestant.fullName %> </p>
+        <p><%= lastResults.MEN[1].contestant.fullName %></p>
+        <p><%= lastResults.MEN[2].contestant.fullName %></p>
+
+        <p><strong>Menn - <%= lastResults.GENTLEMEN[0].contest.discipline.name %> - <%= getDate(lastResults.GENTLEMEN[0].contest.date) %></strong></p>
+        <p><%= lastResults.GENTLEMEN[0].contestant.fullName %> </p>
+        <p><%= lastResults.GENTLEMEN[1].contestant.fullName %></p>
+        <p><%= lastResults.GENTLEMEN[2].contestant.fullName %></p>
+    </div>
+
+</div>
+
 </body>
 </html>

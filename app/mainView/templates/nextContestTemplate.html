@@ -5,6 +5,25 @@
     <title></title>
 </head>
 <body>
+<div class="panel panel-info">
+    <div class="panel-heading"><strong>Neste øvelse</strong></div>
+    <div class="panel-body">
+        <p><strong>Disiplin: </strong><a href="#disciplines"><%= nextContest.discipline.name %></a></p>
+        <p><strong>Beskrivelse:</strong> <%= nextContest.discipline.description %></p>
+        <% if (nextContest.discipline.category === "TECHNIQUE"){ %><p><strong>Kategori: </strong>Teknikk</p><% } else if (nextContest.discipline.category === "ENDURANCE"){ %>
+        <p><strong>Kategori: </strong>Kondisjon</p><% } else if (nextContest.discipline.category === "BALL"){ %> <p><strong>Kategori: </strong>Ball</p><% } %>
+        <p><strong>Divisjon: </strong><%= (nextContest.division === "WOMEN") ? "Kvinner" : "Menn"%></p>
+        <p><strong>Sted: </strong><%= nextContest.location %></p>
+
+        <div class="btn-group" role="group" aria-label="...">
+            <button id="signup" type="button" class="btn btn-default">Meld på</button>
+            <button id="signoff" type="button" class="btn btn-default">Meld av</button>
+        </div>
+
+
+    </div>
+
+</div>
 
 </body>
 </html>
