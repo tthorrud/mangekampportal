@@ -13,7 +13,13 @@ define([
     var Contests = Backbone.Collection.extend({
 
         model: Contest,
-        url:"http://localhost:8080/rest/contests"
+        url:"http://localhost:8080/rest/contests",
+        byColor: function (color) {
+        filtered = this.filter(function (box) {
+            return box.get("color") === color;
+        });
+        return new Boxes(filtered);
+    }
 
     });
 
