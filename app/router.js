@@ -8,11 +8,13 @@ define([
     'views/contestantsView',
     'views/navigationView',
     'mainView/mainView',
-    'views/contestantView',
     'views/scoreboardView',
     'views/contestsView',
-    'views/contestView'
-], function (jquery, _, Backbone, DisciplineView, ContestantsView, NavigationView, MainView, ContestantView, ScoreboardView, ContestsView, ContestView) {
+    'views/contestView',
+    'views/contestantView',
+    'views/add_disciplinesView'
+], function (jquery, _, Backbone, DisciplineView, ContestantsView, NavigationView, MainView, ScoreboardView, ContestsView, ContestView, ContestantView, AddDisciplineView) {
+
 
     var Router = Backbone.Router.extend({
 
@@ -20,13 +22,15 @@ define([
             '': 'disciplinesView',
             'contestants': 'contestantsView',
             'mainView': 'mainView',
-            'contestant/:id': 'contestantView',
             'scoreboard': 'scoreboardView',
             'contests': 'contestsView',
-            'contests/:id': 'contestView'
+            'contests/:id': 'contestView',
+            'contestant/:id': 'contestantView',
+            'disciplines/add': 'addDisciplineView'
         },
 
         initialize: function () {
+
             var navigationView = new NavigationView();
             navigationView.render();
         },
@@ -35,22 +39,25 @@ define([
             var disciplineView = new DisciplineView();
             return disciplineView;
         },
-
+        addDisciplineView: function () {
+            var addDisciplineView = new AddDisciplineView();
+            return addDisciplineView;
+        },
         contestantsView: function () {
             var contestantsView = new ContestantsView();
             return contestantsView;
 
         },
-        mainView: function() {
+        mainView: function () {
             var mainView = new MainView();
             return mainView;
 
-        }, 
+        },
         contestantView: function (id) {
             var contestantView = new ContestantView(id);
             return contestantView;
         },
-        scoreboardView: function() {
+        scoreboardView: function () {
             var scoreboardView = new ScoreboardView();
             return scoreboardView;
 

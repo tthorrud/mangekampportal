@@ -1,7 +1,17 @@
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
+<div class="row">
+    <div class="col-md-4">
+        <a href="#/disciplines/add">
+            <div class="discipline_button">Legg til disiplin</div>
+        </a>
+    </div>
     <% _.each(disciplines, function(discipline){ %>
-    <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default"><%= discipline.name %></button>
+    <div class="col-md-4">
+        <a href="#">
+            <div class="discipline_button">
+                <p><%= discipline.name %></p>
+                <p><%= discipline.category %></p>
+            </div>
+        </a>
     </div>
     <%});%>
 </div>
