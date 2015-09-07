@@ -7,15 +7,17 @@ define([
     'views/disciplinesView',
     'views/contestantsView',
     'views/navigationView',
-    'views/contestantView'
-], function (jquery, _, Backbone, DisciplineView, ContestantsView, NavigationView, ContestantView) {
+    'views/contestantView',
+    'views/add_disciplinesView'
+], function (jquery, _, Backbone, DisciplineView, ContestantsView, NavigationView, ContestantView, AddDisciplineView) {
 
     var Router = Backbone.Router.extend({
 
         routes: {
             '': 'disciplinesView',
             'contestants': 'contestantsView',
-            'contestant/:id': 'contestantView'
+            'contestant/:id': 'contestantView',
+            'disciplines/add': 'addDisciplineView'
         },
 
         initialize: function () {
@@ -27,7 +29,10 @@ define([
             var disciplineView = new DisciplineView();
             return disciplineView;
         },
-
+        addDisciplineView: function () {
+            var addDisciplineView = new AddDisciplineView();
+            return addDisciplineView;
+        },
         contestantsView: function () {
             var contestantsView = new ContestantsView();
             return contestantsView;
