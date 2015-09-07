@@ -1,0 +1,49 @@
+<ol class="breadcrumb">
+  <li><a href="">Hjem</a></li>
+  <li><a href="#contests">Øvelser</a></li>
+  <li class="active"><%= contest.discipline.name %></li>
+</ol>
+
+<p class="lead text-center"><%= contest.discipline.name %></p>
+
+<div class="row">
+            
+              
+            <div class="row">
+                <div class="col-md-8">
+                    <p><%= contest.info %></p>
+                    <p><%= contest.discipline.description %></p>
+
+                    <table class="table">
+                        <tr>
+                            <th>Rank</th>
+                            <th>Navn</th>
+                            <th>Poeng</th>
+                            <th>Kommentar</th>
+                        </tr>
+
+                        <% _.each(participants, function(participant) { %>
+                            <tr>
+                                <td><%= participant.rank %></td>
+                                <td><%= participant.contestant.fullName %></td>
+                                <td><%= participant.score %></td>
+                                <td><%= participant.comment %></td>
+                            </tr>
+                        <% }); %>
+                    </table>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="well">
+                        <p class="lead">Info</p>
+                        
+                    <p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <%= getDate(contest.date) %> <p>
+                    <p><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= getTime(contest.date) %><p>    
+                    <p><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> <%= contest.location %></p>
+                    <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> <%= getCategory(contest.discipline.category) %>, <%= getDivision(contest.division) %></p>
+                    <img src="http://localhost:8080/resources/images/pictograms/<%=contest.discipline.pictogram %>.png" alt="<%=contest.discipline.pictogram%>" title="<%=contest.discipline.pictogram %>" width="100%">
+                </div>
+            </div>
+            </div>
+        </div>
+</div>

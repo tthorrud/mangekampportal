@@ -9,9 +9,10 @@ define([
     'views/navigationView',
     'mainView/mainView',
     'views/contestantView',
-    'views/scoreboardView'
-], function (jquery, _, Backbone, DisciplineView, ContestantsView, NavigationView, MainView, ContestantView, ScoreboardView) {
-
+    'views/scoreboardView',
+    'views/contestsView',
+    'views/contestView'
+], function (jquery, _, Backbone, DisciplineView, ContestantsView, NavigationView, MainView, ContestantView, ScoreboardView, ContestsView, ContestView) {
 
     var Router = Backbone.Router.extend({
 
@@ -20,8 +21,9 @@ define([
             'contestants': 'contestantsView',
             'mainView': 'mainView',
             'contestant/:id': 'contestantView',
-            'scoreboard': 'scoreboardView'
-
+            'scoreboard': 'scoreboardView',
+            'contests': 'contestsView',
+            'contests/:id': 'contestView'
         },
 
         initialize: function () {
@@ -52,6 +54,14 @@ define([
             var scoreboardView = new ScoreboardView();
             return scoreboardView;
 
+        },
+        contestsView: function () {
+            var contestsView = new ContestsView();
+            return contestsView;
+        },
+        contestView: function (id) {
+            var contestView = new ContestView(id);
+            return contestView;
         }
 
     });
