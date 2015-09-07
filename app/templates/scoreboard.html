@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Navn</th>
+            <th>Snitt</th>
+            <th>Antall</th>
+        <% _.each(scoreboard.disciplines, function(discipline) { %>
+            <th><%= discipline.name %></th>
+        <% }); %>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% _.each(scoreboard.scoreRows, function(scoreboardRow) { %>
+        <tr>
+            <th><%= scoreboardRow.rank %></th>
+            <th><%= scoreboardRow.contestant.fullName %></th>
+            <th><%= parseFloat((scoreboardRow.finalScore).toFixed(2)) %></th>
+            <th><%= scoreboardRow.count %></th>
+            <th><%= scoreboardRow.participations[0].rank %></th>
+
+            <% }); %>
+
+        </tr>
+
+        </tbody>
+    </table>
+</div>
