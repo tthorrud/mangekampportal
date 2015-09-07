@@ -19,13 +19,14 @@ define([
     var Router = Backbone.Router.extend({
 
         routes: {
-            '': 'disciplinesView',
+            '': 'mainView',
+            'home': 'mainView',
             'contestants': 'contestantsView',
-            'mainView': 'mainView',
             'scoreboard': 'scoreboardView',
             'contests': 'contestsView',
             'contests/:id': 'contestView',
             'contestant/:id': 'contestantView',
+            'disciplines':'disciplinesView',
             'disciplines/add': 'addDisciplineView'
         },
 
