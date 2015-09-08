@@ -16,19 +16,19 @@ define([
         el: '#app',
         template:  _.template(AddDisciplineTemplate),
         model: Discipline,
-        collection: Disciplines,
+        disciplines: Disciplines,
 
 
         events: {
             "click #submit": "addDiscipline",
             'change input[type=radio]': 'onSelectedPictogram'
-//            "click input": "onSelectedPictogram"
         },
 
         initialize: function() {
             var self = this;
-            this.collection = new Disciplines();
-            this.collection.fetch({
+
+            this.disciplines = new Disciplines();
+            this.disciplines.fetch({
                 success: function () {
                     self.render();
                 },
@@ -39,7 +39,7 @@ define([
         },
 
         render: function () {
-            this.$el.html(this.template({disciplines: this.collection.toJSON()}));
+            this.$el.html(this.template({disciplines: this.disciplines.toJSON()}));
             return this;
         },
 
@@ -49,11 +49,9 @@ define([
                 "description":jquery('#discipline_description').val(),
                 "category":jquery('#discipline_category').val(),
                 "resultFormat":jquery('#discipline_resultFormat').val(),
-                "pictogram": 'BADMINTON'
+                "pictogram": this.selectedPictogram
             });
 
-
-            console.log(discipline);
             discipline.save({
                 success: function(response){
                     console.log(response);
@@ -65,7 +63,6 @@ define([
 
          onSelectedPictogram: function(){
             this.selectedPictogram = jquery('input[type=radio]:checked').val();
-            console.log(this.selectedPictogram);
          }
     });
 
