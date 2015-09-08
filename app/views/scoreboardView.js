@@ -13,7 +13,9 @@ define([
     var ScoreboardView = Backbone.View.extend({
         el: '#app',
         template: _.template(ScoreboardTemplate),
-
+        events: {
+            "click .button-filter": "getScoreboardByYear",
+        },
         initialize: function() {
             var self = this;
             this.scoreboard = new Scoreboard();
@@ -25,6 +27,22 @@ define([
                     console.log("D");
                 }
             });
+        },
+
+        getScoreboardByYear: function(ev) {
+            var year = $(ev.currentTarget).data('year');
+            console.log(year);
+            var newScoreboard = new Scoreboard({year: year});
+            newScoreboard.fetch({
+                success: function(){
+                    console.log("Success")
+                },
+                error: function(){
+                    console.log("FAIL")
+                }
+            });
+            this.render();
+
         },
 
 
