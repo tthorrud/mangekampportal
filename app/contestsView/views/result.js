@@ -4,20 +4,16 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!contestsView/templates/results.html',
-    'collections/contests',
+    'text!contestsView/templates/result.html',
+    'contestsView/collections/contests',
     'contestsView/models/contest',
 ], function (jquery, _, Backbone, ResultTemplate, Contests, Model) {
 
 
-    var ResultsView = Backbone.View.extend({
+    var ResultView = Backbone.View.extend({
         el: '#results',
         template: _.template(ResultTemplate),
-        changeDivision: function (year, division, category) {
-
-            console.log("year: " + year);
-            console.log("division: " + division);
-            console.log("category: " + category);
+        filterContests: function (year, division, category) {
 
             this.filteredContests.set(this.allContests.filter(function(contest) {
                 return ((contest.get('discipline').category === category) && (contest.get('year') === +year) && (contest.get('division') === division));
@@ -25,7 +21,6 @@ define([
 
             this.render();
         },
-
         initialize: function () {
             var self = this;
 
@@ -46,31 +41,6 @@ define([
             });
 
         },
-        /*
-        getContestsByYear: function(ev) {
-            this.currentYear = $(ev.currentTarget).data('year');
-
-            if (this.currentYear === 'ALL') {
-                if (this.currentDivision === 'ALL') {
-                    this.filteredContests = this.allContests.clone();
-                } else {
-
-                }
-
-            }
-
-            else this.filteredContests.set(this.allContests.where({year: this.currentYear}));
-
-             this.render();
-        },
-        getContestsByDivision: function(ev) {
-              this.currentDivision = $(ev.currentTarget).data('division');
-
-              if (this.currentDivision === 'ALL') this.filteredContests = this.allContests.clone();
-              else this.filteredContests.set(this.allContests.where({division: this.currentDivision}));
-
-              this.render();
-        },*/
         render: function () {
 
             var getDate = function (date) {
@@ -103,6 +73,6 @@ define([
         }
     });
 
-    return ResultsView;
+    return ResultView;
 
 });

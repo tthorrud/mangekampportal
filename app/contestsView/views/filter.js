@@ -1,13 +1,10 @@
-/**
- * Created by thorstein on 04.09.15.
- */
 'use strict';
 
 define([
     'jquery',
     'underscore',
     'backbone',
-    'text!contestsView/templates/filters.html',
+    'text!contestsView/templates/filter.html',
 ], function (jquery, _, Backbone, FilterTemplate) {
 
 

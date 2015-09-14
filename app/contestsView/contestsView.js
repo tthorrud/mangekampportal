@@ -5,35 +5,33 @@ define([
     'underscore',
     'backbone',
     'text!contestsView/templates/contestsTemplate.html',
-    'collections/contests',
-    'contestsView/views/filters',
-    'contestsView/views/contests'
-], function (jquery, _, Backbone, ContestsTemplate, Contests, FilterView, ResultsView) {
+    'contestsView/collections/contests',
+    'contestsView/views/filter',
+    'contestsView/views/result'
+], function (jquery, _, Backbone, ContestsTemplate, Contests, FilterView, ResultView) {
 
 
     var ContestsView = Backbone.View.extend({
         el: '#app',
         template: _.template(ContestsTemplate),
         events: {
-            "change .button-division2 input[type=radio]": "changeDivision",
-            "change .button-year2 input[type=radio]": "changeDivision",
-            "change .button-category input[type=radio]": "changeDivision",
+            "change .button-division input[type=radio]": "filterContests",
+            "change .button-year input[type=radio]": "filterContests",
+            "change .button-category input[type=radio]": "filterContests",
         },
-        changeDivision: function (ev) {
-            console.log($(ev.currentTarget)[0]['id']);
+        filterContests: function (ev) {
 
-            var chosenyear = this.$("div.button-year2 .active input")[0]['id'];
-            var division = this.$("div.button-division2 .active input")[0]['id'];
+            var chosenyear = this.$("div.button-year .active input")[0]['id'];
+            var division = this.$("div.button-division .active input")[0]['id'];
             var category = this.$("div.button-category .active input")[0]['id'];
 
             console.log("year: " + chosenyear);
             console.log("division: " + division);
             console.log("category: " + category);
 
-            this.resultView.changeDivision(chosenyear, division, category);
+            this.resultView.filterContests(chosenyear, division, category);
             
         },
-
         initialize: function () {
             var self = this;
             this.render();
@@ -68,8 +66,9 @@ define([
 
             this.$el.html(this.template({getDate: getDate, getTime: getTime, getCategory: getCategory, getDivision: getDivision}));
 
+            // Two subviews. FilterView is holding the filter paramenters from the user. ResultsView is showing the filtered collection. 
             this.filterView = new FilterView();
-            this.resultView = new ResultsView();
+            this.resultView = new ResultView();
 
             return this;
         }
