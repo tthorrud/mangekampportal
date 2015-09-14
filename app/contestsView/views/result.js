@@ -16,7 +16,12 @@ define([
         filterContests: function (year, division, category) {
 
             this.filteredContests.set(this.allContests.filter(function(contest) {
-                return ((contest.get('discipline').category === category) && (contest.get('year') === +year) && (contest.get('division') === division));
+
+                var tempYear = ((year == 'ALL') || (contest.get('year') == year));
+                var tempDivision = ((division === 'ALL') || (contest.get('division') === division));
+                var tempCategory = ((category == 'ALL') || (contest.get('discipline').category === category))
+
+                return (tempYear && tempDivision && tempCategory);
             }));
 
             this.render();
