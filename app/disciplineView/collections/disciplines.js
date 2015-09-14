@@ -1,10 +1,10 @@
 'use strict';
 
 define([
-    'jquery',
+    '../../../bower_components/jquery/dist/jquery',
     'underscore',
     'backbone',
-    'model/discipline'
+    'disciplineView/models/discipline'
 ], function (jquery, _, Backbone, Discipline) {
 
     var Disciplines = Backbone.Collection.extend({

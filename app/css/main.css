@@ -1,12 +1,7 @@
-.nav-justified > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    margin-bottom: 0;
-    font-weight: bold;
-    color: #777;
-    text-align: center;
-    background-color: #e5e5e5;
+#app {
+    margin-top: 100px;
 }
+
 
 .discipline_button {
     width: 100%;

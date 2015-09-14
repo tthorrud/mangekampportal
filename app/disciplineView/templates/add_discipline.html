@@ -2,7 +2,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">Legg til ny disiplin:</div>
         <div class="panel-body">
-            <form>
+            <div>
                 <div class="form-group ">
                     <label for="discipline_name">Navn:</label>
                     <input id="discipline_name" type="text" class="form-control" id="discipline_name"
@@ -39,27 +39,20 @@
                 </div>
                 <div class="form-group">
                     <label for="discipline_name">Piktogram:</label>
-
                     <div class="row">
+                        <% _.each(pictograms, function(pictogram) { %>
                         <div class="col-xs-6 col-md-3">
                             <label>
-                                <input type="radio" name="pictograms" value="BADMINTON"/>
-                                <img src="http://localhost:8080/resources/images/pictograms/BADMINTON.png">
-                            </label>
-                            <label>
-                                <input type="radio" name="pictograms" value="BALLET"/>
-                                <img src="http://localhost:8080/resources/images/pictograms/BALLET.png">
-                            </label>
-                            <label>
-                                <input type="radio" name="pictograms" value="BASKETBALL"/>
-                                <img src="http://localhost:8080/resources/images/pictograms/BASKETBALL.png">
+                                <input type="radio" name="pictograms" value="<%= pictogram %>"/>
+                                <img src="http://localhost:8080/resources/images/pictograms/<%= pictogram %>.png">
                             </label>
                         </div>
+                        <% }); %>
                     </div>
                 </div>
-                <button id="submit" type="submit" class="btn btn-default">Lagre</button>
-                <a href="#" class="btn btn-default">Avbryt</a>
-            </form>
+                <button id="add_discipline" class="btn btn-default">Lagre</button>
+                <a href="#/disciplines" class="btn btn-default">Avbryt</a>
+            </div>
         </div>
     </div>
 </div>

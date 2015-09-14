@@ -7,9 +7,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/disciplines.html',
-    'collections/disciplines'
-], function (jquery, _, Backbone, DisciplinesTemplate, Disciplines) {
+    'text!disciplineView/templates/disciplines.html',
+    'disciplineView/collections/disciplines'
+], function ($, _, Backbone, DisciplinesTemplate, Disciplines) {
 
 
     var DisciplineView = Backbone.View.extend({
@@ -21,7 +21,6 @@ define([
             this.coll = new Disciplines();
             this.coll.fetch({
                 success: function () {
-                    console.log(self.coll);
                     self.render();
                 },
                 error: function () {
@@ -30,7 +29,6 @@ define([
             });
         },
         render: function () {
-            // the disciplines will be "visible" in your template
             this.$el.html(this.template({disciplines: this.coll.toJSON()}));
             return this;
         }

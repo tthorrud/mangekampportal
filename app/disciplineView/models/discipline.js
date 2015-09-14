@@ -1,7 +1,7 @@
 'use strict';
 
 define([
-    'underscore',
+    '../../../bower_components/underscore/underscore',
     'backbone'
 ], function (_, Backbone) {
 
@@ -16,6 +16,10 @@ define([
             "category":"",
             "resultFormat":"",
             "pictogram":""
+        },
+
+        initialize: function(disciplineId){
+            this.id = disciplineId;
         }
 
     });

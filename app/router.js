@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/disciplinesView',
+    'disciplineView/views/disciplinesView',
     'views/contestantsView',
     'views/navigationView',
     'mainView/mainView',
@@ -12,8 +12,11 @@ define([
     'views/contestsView',
     'views/contestView',
     'views/contestantView',
-    'views/add_disciplinesView'
-], function (jquery, _, Backbone, DisciplineView, ContestantsView, NavigationView, MainView, ScoreboardView, ContestsView, ContestView, ContestantView, AddDisciplineView) {
+    'disciplineView/views/add_disciplinesView',
+    'disciplineView/views/edit_disciplineView',
+    'disciplineView/views/disciplineView'
+], function (jquery, _, Backbone, DisciplinesView, ContestantsView, NavigationView, MainView, ScoreboardView,
+             ContestsView, ContestView, ContestantView, AddDisciplineView, EditDisciplineView, DisciplineView) {
 
 
     var Router = Backbone.Router.extend({
@@ -27,7 +30,9 @@ define([
             'contests/:id': 'contestView',
             'contestant/:id': 'contestantView',
             'disciplines':'disciplinesView',
-            'disciplines/add': 'addDisciplineView'
+            'disciplines/add': 'addDisciplineView',
+            'disciplines/edit/:id': 'editDiscipline',
+            'disciplines/:id':'disciplineView'
         },
 
         initialize: function () {
@@ -37,25 +42,31 @@ define([
         },
 
         disciplinesView: function () {
-            var disciplineView = new DisciplineView();
+            var disciplinesView = new DisciplinesView();
+            return disciplinesView;
+        },
+        disciplineView: function (id) {
+            var disciplineView = new DisciplineView(id);
             return disciplineView;
         },
         addDisciplineView: function () {
             var addDisciplineView = new AddDisciplineView();
             return addDisciplineView;
         },
+        editDiscipline: function (disciplineId) {
+            var editDisciplineView = new EditDisciplineView(disciplineId);
+            return editDisciplineView;
+        },
         contestantsView: function () {
             var contestantsView = new ContestantsView();
             return contestantsView;
-
         },
         mainView: function () {
             var mainView = new MainView();
             return mainView;
-
         },
-        contestantView: function (id) {
-            var contestantView = new ContestantView(id);
+        contestantView: function (contestantId) {
+            var contestantView = new ContestantView(contestantId);
             return contestantView;
         },
         scoreboardView: function () {

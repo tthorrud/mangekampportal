@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Panel title</h3>
+                <h3 class="panel-title">Brukerinfo</h3>
             </div>
             <div class="panel-body">
 
@@ -61,7 +61,7 @@
                     <tbody>
                     <% _.each(contestant, function(contestant) { %>
                     <tr>
-                        <th><%= contestant.contest.discipline.name %></th>
+                        <th><a href="#/contests/<%= contestant.contest.id %>"><%= contestant.contest.discipline.name %></a></th>
                         <th><%= contestant.rank %></th>
                         <th><%= contestant.score %></th>
                         <th><%= contestant.contest.year %></th>
