@@ -14,6 +14,10 @@ define([
 
         initialize: function (id) {
             this.id = id;
+        },
+
+        category: function () {
+            return this.discipline.category;
         }
 
     });

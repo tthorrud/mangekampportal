@@ -4,46 +4,40 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/contests.html',
-    'collections/contests'
-], function (jquery, _, Backbone, ContestsTemplate, Contests) {
+    'text!contestsView/templates/contestsTemplate.html',
+    'collections/contests',
+    'contestsView/views/filters',
+    'contestsView/views/contests'
+], function (jquery, _, Backbone, ContestsTemplate, Contests, FilterView, ResultsView) {
 
 
     var ContestsView = Backbone.View.extend({
         el: '#app',
         template: _.template(ContestsTemplate),
         events: {
-            "click .button-all": "getAllContests",
-            "click .button-filter": "getContestsByDivision",
+            "change .button-division2 input[type=radio]": "changeDivision",
+            "change .button-year2 input[type=radio]": "changeDivision",
+            "change .button-category input[type=radio]": "changeDivision",
         },
+        changeDivision: function (ev) {
+            console.log($(ev.currentTarget)[0]['id']);
+
+            var chosenyear = this.$("div.button-year2 .active input")[0]['id'];
+            var division = this.$("div.button-division2 .active input")[0]['id'];
+            var category = this.$("div.button-category .active input")[0]['id'];
+
+            console.log("year: " + chosenyear);
+            console.log("division: " + division);
+            console.log("category: " + category);
+
+            this.resultView.changeDivision(chosenyear, division, category);
+            
+        },
+
         initialize: function () {
             var self = this;
-            
-            // Collection to track all contests
-            this.allContests = new Contests();
-            
-            // Displayed collection which may be filtered
-            this.filteredContests = new Contests();
+            this.render();
 
-            this.allContests.fetch({
-                success: function () {
-                    self.filteredContests = self.allContests.clone();
-                    self.render();
-                },
-                error: function () {
-                    console.log("Error");
-                }
-            });
-
-        },
-        getAllContests: function() {
-             this.filteredContests = this.allContests.clone();
-             this.render();
-        },
-        getContestsByDivision: function(ev) {
-              var chosenDivision = $(ev.currentTarget).data('division');
-              this.filteredContests.set(this.allContests.where({division: chosenDivision}));
-             this.render();
         },
         render: function () {
 
@@ -72,7 +66,11 @@ define([
                 }
             };
 
-            this.$el.html(this.template({contests: this.filteredContests.toJSON(), getDate: getDate, getTime: getTime, getCategory: getCategory, getDivision: getDivision}));
+            this.$el.html(this.template({getDate: getDate, getTime: getTime, getCategory: getCategory, getDivision: getDivision}));
+
+            this.filterView = new FilterView();
+            this.resultView = new ResultsView();
+
             return this;
         }
     });

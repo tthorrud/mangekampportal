@@ -4,8 +4,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/contest.html',
-    'model/contest'
+    'text!contestsView/templates/contest.html',
+    'contestsView/models/contest'
 ], function (jquery, _, Backbone, ContestTemplate, Contest) {
 
     var ContestView = Backbone.View.extend({
