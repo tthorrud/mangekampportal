@@ -9,8 +9,8 @@ define([
     'views/navigationView',
     'mainView/mainView',
     'views/scoreboardView',
-    'views/contestsView',
-    'views/contestView',
+    'contestsView/contestsView',
+    'contestsView/contestView',
     'views/contestantView',
     'views/add_disciplinesView'
 ], function (jquery, _, Backbone, DisciplineView, ContestantsView, NavigationView, MainView, ScoreboardView, ContestsView, ContestView, ContestantView, AddDisciplineView) {
