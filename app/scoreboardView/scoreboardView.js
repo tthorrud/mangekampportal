@@ -27,14 +27,14 @@ define([
 
         },
         initialize: function () {
-            var self = this;
             this.render();
 
         },
+
      /*   getScoreboardByYear: function(ev) {
             var year = $(ev.currentTarget).data('year');
             console.log(year);
-            var newScoreboard = new Scoreboard({year: year});
+            var newScoreboard = new Scoreboard({year: year, division});
             newScoreboard.fetch({
                 success: function(){
                     console.log("Success")
