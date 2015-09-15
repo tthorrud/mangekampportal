@@ -1,35 +1,37 @@
-/**
- * Created by jane on 2015-09-07.
- */
 'use strict';
 
 define([
-    '../../bower_components/underscore/underscore',
+    'jquery',
+    'underscore',
     'backbone',
-    'text!templates/scoreboard.html',
-    'scoreboardView/models/scoreboard'
-], function (_, Backbone, ScoreboardTemplate, Scoreboard) {
+    'text!scoreboardView/templates/scoreboardTemplate.html',
+    'scoreboardView/models/scoreboard',
+    'scoreboardView/views/filter',
+    'scoreboardView/views/result'
+], function ($, _, Backbone, ScoreboardTemplate, Scoreboard, FilterView, ResultView) {
 
     var ScoreboardView = Backbone.View.extend({
         el: '#app',
+        model: Scoreboard,
         template: _.template(ScoreboardTemplate),
         events: {
-            "click .button-filter": "getScoreboardByYear",
+            "change .button-division input[type=radio]": "filterScoreboard",
+            "change .button-year input[type=radio]": "filterScoreboard",
         },
-        initialize: function() {
-            var self = this;
-            this.scoreboard = new Scoreboard();
-            this.scoreboard.fetch({
-                success: function () {
-                    self.render();
-                },
-                error: function () {
-                    console.log("D");
-                }
-            });
-        },
+        filterScoreboard: function (ev) {
 
-        getScoreboardByYear: function(ev) {
+            var chosenyear = this.$("div.button-year .active input")[0]['id'];
+            var division = this.$("div.button-division .active input")[0]['id'];
+
+            this.resultView.filterScoreboard(chosenyear, division);
+
+        },
+        initialize: function () {
+            var self = this;
+            this.render();
+
+        },
+     /*   getScoreboardByYear: function(ev) {
             var year = $(ev.currentTarget).data('year');
             console.log(year);
             var newScoreboard = new Scoreboard({year: year});
@@ -44,11 +46,16 @@ define([
             this.render();
 
         },
+*/
 
+        render: function () {
 
-        render: function() {
+            this.$el.html(this.template);
 
-            this.$el.html(this.template({scoreboard: this.scoreboard.toJSON()}));
+            // Two subviews. FilterView is holding the filter paramenters from the user. ResultsView is showing the filtered collection.
+            this.filterView = new FilterView();
+            this.resultView = new ResultView();
+
             return this;
         }
 

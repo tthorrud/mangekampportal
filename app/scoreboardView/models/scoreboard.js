@@ -1,7 +1,7 @@
 'use strict';
 
 define([
-    '../../../bower_components/underscore/underscore',
+    'underscore',
     'backbone'
 ], function (_, Backbone) {
 
