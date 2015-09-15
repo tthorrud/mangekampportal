@@ -9,7 +9,6 @@ define([
     'contestsView/models/contest',
 ], function (jquery, _, Backbone, ResultTemplate, Contests, Model) {
 
-
     var ResultView = Backbone.View.extend({
         el: '#results',
         template: _.template(ResultTemplate),
@@ -19,7 +18,7 @@ define([
 
                 var tempYear = ((year == 'ALL') || (contest.get('year') == year));
                 var tempDivision = ((division === 'ALL') || (contest.get('division') === division));
-                var tempCategory = ((category == 'ALL') || (contest.get('discipline').category === category))
+                var tempCategory = ((category == 'ALL') || (contest.get('discipline').category === category));
 
                 return (tempYear && tempDivision && tempCategory);
             }));

@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!contestsView/templates/contest.html',
+    'text!contestsView/templates/contestTemplate.html',
     'contestsView/models/contest'
 ], function (jquery, _, Backbone, ContestTemplate, Contest) {
 
