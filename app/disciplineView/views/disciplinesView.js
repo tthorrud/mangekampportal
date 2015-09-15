@@ -17,6 +17,7 @@ define([
         template: _.template(DisciplinesTemplate),
 
         initialize: function () {
+
             var self = this;
             this.coll = new Disciplines();
             this.coll.fetch({
@@ -27,10 +28,14 @@ define([
                     console.log("D");
                 }
             });
+
         },
+
         render: function () {
+
             this.$el.html(this.template({disciplines: this.coll.toJSON()}));
             return this;
+
         }
     });
 

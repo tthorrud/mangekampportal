@@ -8,47 +8,18 @@
                     <input id="discipline_name" type="text" class="form-control" id="discipline_name"
                            placeholder="Navn">
                 </div>
-                <div class="form-group ">
-                    <label for="discipline_name">Kategori:</label>
-
-                    <div class="btn-group">
-                        <select id="discipline_category" class="form-control">
-                            <option value="BALL">Ball</option>
-                            <option value="ENDURANCE">Kondisjon</option>
-                            <option value="TECHNIQUE">Teknikk</option>
-                        </select>
-                    </div>
+                <div id="category_selector_container" class="form-group ">
+                    <!--Category selector is added her.-->
                 </div>
-                <div class="form-group ">
-                    <label for="discipline_name">Resultatform:</label>
-
-                    <div class="btn-group">
-                        <select id='discipline_resultFormat' class="form-control">
-                            <option value="INTEGER_INCREASING">Heltall (stigende)</option>
-                            <option value="INTEGER_DECREASING">Heltall (synkende)</option>
-                            <option value="DECIMAL_INCREASING">Desimaltall (stigende)</option>
-                            <option value="DECIMAL_DECREASING">Desimaltall (synkende)</option>
-                            <option value="TIME_INCREASING">Tid (stigende)</option>
-                            <option value="TIME_DECREASING">Tid (synkende)</option>
-                        </select>
-                    </div>
+                <div id="resultformat_selector_container" class="form-group ">
+                    <!-- Resultformat selector is added her.-->
                 </div>
                 <div class="form-group">
-                    <label for="discipline_name">Beskrivelse:</label>
+                    <label for="discipline_description">Beskrivelse:</label>
                     <textarea id="discipline_description" class="form-control" rows="5"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="discipline_name">Piktogram:</label>
-                    <div class="row">
-                        <% _.each(pictograms, function(pictogram) { %>
-                        <div class="col-xs-6 col-md-3">
-                            <label>
-                                <input type="radio" name="pictograms" value="<%= pictogram %>"/>
-                                <img src="http://localhost:8080/resources/images/pictograms/<%= pictogram %>.png">
-                            </label>
-                        </div>
-                        <% }); %>
-                    </div>
+                <div id="pictogram_selector_container" class="form-group">
+                    <!-- Pictogram selector is added her.-->
                 </div>
                 <button id="add_discipline" class="btn btn-default">Lagre</button>
                 <a href="#/disciplines" class="btn btn-default">Avbryt</a>

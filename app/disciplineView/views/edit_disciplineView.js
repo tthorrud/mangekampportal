@@ -4,13 +4,14 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'disciplineView/models/discipline',
     'bootstrap',
+    'disciplineView/models/discipline',
     'text!disciplineView/templates/edit_discipline.html',
-    'collections/pictograms',
-    'collections/categories',
-    'collections/resultformats'
-], function ($, _, Backbone, Discipline, bootstrap, EditDisciplineTemplate, Pictograms, Categories, Resultformats) {
+    'views/category_selectorView',
+    'views/resultformat_selector',
+    'views/pictogram_selector_view'
+], function ($, _, Backbone, bootstrap, Discipline, EditDisciplineTemplate,
+             CategorySelectorView, ResultformatSelectorView, PictogramSelectorView) {
 
     var EditDisciplineView = Backbone.View.extend({
 
@@ -26,33 +27,6 @@ define([
        initialize: function (disciplineId) {
            var self = this;
 
-           this.pictograms = new Pictograms();
-           this.pictograms.fetch({
-               success:function() {
-               },
-               error: function (error) {
-                   console.log(error);
-               }
-           });
-
-           this.categories = new Categories();
-           this.categories.fetch({
-               success:function() {
-               },
-               error: function (error) {
-                   console.log(error);
-               }
-           });
-
-           this.resultformats = new Resultformats();
-           this.resultformats.fetch({
-               success:function() {
-               },
-               error: function (error) {
-                   console.log(error);
-               }
-           });
-
            this.model = new Discipline({id:disciplineId});
            this.model.fetch({
                success:function() {
@@ -66,17 +40,11 @@ define([
 
        render: function () {
 
-           var pictograms = this.pictograms.toJSON();
-           var categories = this.categories.toJSON();
-           var resultformats = this.resultformats.toJSON();
+           this.$el.html(this.template( {discipline: this.model.toJSON()} ) );
 
-           this.$el.html(this.template({
-               discipline: this.model.toJSON(),
-               pictograms: Object.keys(pictograms[0]),
-               categories: Object.keys(categories[0]),
-               resultformats: Object.keys(resultformats[0]),
-               formatResult: this.resultformats,
-               formatCategory: this.categories}));
+           this.category_selector_view = new CategorySelectorView();
+           this.resultformat_selector_view = new ResultformatSelectorView();
+           this.pictogram_selector_view = new PictogramSelectorView();
        },
 
 

@@ -7,8 +7,10 @@ define([
     'backbone',
     'text!disciplineView/templates/discipline.html',
     'bootstrap',
-    'disciplineView/models/discipline'
-], function ($, _, Backbone, DisciplineTemplate, bootstrap, Discipline){
+    'disciplineView/models/discipline',
+    'collections/categories',
+    'collections/resultformats'
+], function ($, _, Backbone, DisciplineTemplate, bootstrap, Discipline, FormatCategories, FormatResultformats){
 
     var DisciplineView = Backbone.View.extend({
 
@@ -21,7 +23,12 @@ define([
         },
 
         initialize: function (disciplineId) {
+
             var self = this;
+
+            this.formatCategory = new FormatCategories();
+            this.formatResultFormat = new FormatResultformats();
+
             this.model = new Discipline({id:disciplineId});
             this.model.fetch({
                 success: function () {
@@ -31,53 +38,29 @@ define([
                     console.log(error);
                 }
             });
+
         },
 
         render: function () {
-            this.$el.html(this.template({discipline: this.model.toJSON(), formatCategory: this.formatCategory,
+
+            this.$el.html(this.template({
+                discipline: this.model.toJSON(),
+                formatCategory: this.formatCategory,
                 formatResultFormat: this.formatResultFormat}));
             return this;
+
         },
 
         deleteDiscipline: function () {
             this.model.destroy({
-                success: function (response) {
+                success: function () {
                     Backbone.history.navigate('disciplines',{trigger: true});
                 },
                 error: function (error) {
                     console.log(error);
                 }
             });
-        },
-
-        formatResultFormat: function (resultFormat) {
-            switch (resultFormat) {
-                case 'INTEGER_INCREASING':
-                    return 'Heltall (stigende)';
-                case 'INTEGER_DECREASING':
-                    return 'Heltall (synkende)';
-                case 'DECIMAL_INCREASING':
-                    return 'Desimaltall (stigende)';
-                case 'DECIMAL_DECREASING':
-                    return 'Desimaltall (synkende)';
-                case 'TIME_INCREASING':
-                    return 'Tid (stigende)';
-                case 'TIME_DECREASING':
-                    return 'Tid (synkende)';
-            }
-        },
-
-        formatCategory: function (category) {
-            switch (category){
-                case 'BALL':
-                    return 'Ball';
-                case 'ENDURANCE':
-                    return 'Kondisjon';
-                case 'TECHNIQUE':
-                    return 'Teknikk';
-            }
         }
-
     });
 
     return DisciplineView;

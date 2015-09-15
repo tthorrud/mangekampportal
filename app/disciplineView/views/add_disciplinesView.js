@@ -5,11 +5,14 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!disciplineView/templates/add_discipline.html',
     'bootstrap',
+    'text!disciplineView/templates/add_discipline.html',
     'disciplineView/models/discipline',
-    'collections/pictograms'
-], function ($, _, Backbone, AddDisciplineTemplate, bootstrap, Discipline, Pictograms) {
+    'views/category_selectorView',
+    'views/resultformat_selector',
+    'views/pictogram_selector_view'
+], function ($, _, Backbone, bootstrap, AddDisciplineTemplate, Discipline,
+             CategorySelectorView, ResultformatSelectorView, PictogramSelectorView) {
 
     var AddDisciplineView = Backbone.View.extend({
 
@@ -24,24 +27,17 @@ define([
         },
 
         initialize: function () {
-            var self = this;
-
-            this.collection = new Pictograms();
-            this.collection.fetch({
-                success:function() {
-                    self.render();
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
+            this.render();
         },
 
         render: function () {
-            var pictograms = this.collection.toJSON();
 
-            this.$el.html(this.template({pictograms: Object.keys(pictograms[0])}));
-            return this;
+            this.$el.html(this.template());
+
+            this.category_selector_view = new CategorySelectorView();
+            this.resultformat_selector_view = new ResultformatSelectorView();
+            this.pictogram_selector_view = new PictogramSelectorView();
+
         },
 
         addDiscipline: function () {

@@ -1,0 +1,13 @@
+<div id="category_selector" class="form-group ">
+    <label for="discipline_category">Kategori:</label>
+
+    <div class="btn-group">
+        <select id="discipline_category" class="form-control">
+            <% _.each(categories, function(category) { %>
+            <option value="<%=category%>">
+                <%=formatCategory.formatCategory(category)%>
+            </option>
+            <% }); %>
+        </select>
+    </div>
+</div>

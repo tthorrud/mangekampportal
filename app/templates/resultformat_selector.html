@@ -1,0 +1,13 @@
+<div id="resultformat_selector">
+    <label for="discipline_resultFormat">Resultatform:</label>
+
+    <div class="btn-group">
+        <select id='discipline_resultFormat' class="form-control">
+            <% _.each(resultformats, function(resultformat) { %>
+            <option value="<%=resultformat%>">
+                <%=formatResult.formatResultFormat(resultformat)%>
+            </option>
+            <% }); %>
+        </select>
+    </div>
+</div>

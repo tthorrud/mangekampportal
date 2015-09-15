@@ -1,0 +1,14 @@
+<div id="pictogram_selector">
+    <label>Piktogram:</label>
+
+    <div class="row">
+        <% _.each(pictograms, function(pictogram) { %>
+        <div class="col-xs-6 col-md-3">
+            <label>
+                <input type="radio" name="pictograms" value="<%= pictogram %>"/>
+                <img src="http://localhost:8080/resources/images/pictograms/<%= pictogram %>.png">
+            </label>
+        </div>
+        <% }); %>
+    </div>
+</div>
