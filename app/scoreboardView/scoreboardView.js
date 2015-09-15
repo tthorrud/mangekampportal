@@ -15,13 +15,13 @@ define([
         model: Scoreboard,
         template: _.template(ScoreboardTemplate),
         events: {
-            "change .button-division input[type=radio]": "filterScoreboard",
-            "change .button-year input[type=radio]": "filterScoreboard",
+            "change .button-scoreboard-division input[type=radio]": "filterScoreboard",
+            "change .button-scoreboard-year input[type=radio]": "filterScoreboard",
         },
         filterScoreboard: function (ev) {
 
-            var chosenyear = this.$("div.button-year .active input")[0]['id'];
-            var division = this.$("div.button-division .active input")[0]['id'];
+            var chosenyear = this.$("div.button-scoreboard-year .active input")[0]['id'];
+            var division = this.$("div.button-scoreboard-division .active input")[0]['id'];
 
             this.resultView.filterScoreboard(chosenyear, division);
 

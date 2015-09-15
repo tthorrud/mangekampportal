@@ -15,15 +15,15 @@ define([
         el: '#app',
         template: _.template(ContestsTemplate),
         events: {
-            "change .button-division input[type=radio]": "filterContests",
-            "change .button-year input[type=radio]": "filterContests",
-            "change .button-category input[type=radio]": "filterContests",
+            "change .button-contests-division input[type=radio]": "filterContests",
+            "change .button-contests-year input[type=radio]": "filterContests",
+            "change .button-contests-category input[type=radio]": "filterContests",
         },
         filterContests: function (ev) {
 
-            var chosenyear = this.$("div.button-year .active input")[0]['id'];
-            var division = this.$("div.button-division .active input")[0]['id'];
-            var category = this.$("div.button-category .active input")[0]['id'];
+            var chosenyear = this.$("div.button-contests-year .active input")[0]['id'];
+            var division = this.$("div.button-contests-division .active input")[0]['id'];
+            var category = this.$("div.button-contests-category .active input")[0]['id'];
 
             this.resultView.filterContests(chosenyear, division, category);
             
