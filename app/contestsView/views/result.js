@@ -4,26 +4,49 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/contest.html',
-    'model/contest'
-], function (jquery, _, Backbone, ContestTemplate, Contest) {
+    'text!contestsView/templates/result.html',
+    'contestsView/collections/contests',
+    'contestsView/models/contest',
+], function (jquery, _, Backbone, ResultTemplate, Contests, Model) {
 
-    var ContestView = Backbone.View.extend({
-        el: '#app',
-        template: _.template(ContestTemplate),
-        initialize: function (id) {
+    var ResultView = Backbone.View.extend({
+        el: '#results',
+        template: _.template(ResultTemplate),
+        filterContests: function (year, division, category) {
+
+            this.filteredContests.set(this.allContests.filter(function(contest) {
+
+                var tempYear = ((year == 'ALL') || (contest.get('year') == year));
+                var tempDivision = ((division === 'ALL') || (contest.get('division') === division));
+                var tempCategory = ((category == 'ALL') || (contest.get('discipline').category === category));
+
+                return (tempYear && tempDivision && tempCategory);
+            }));
+
+            this.render();
+        },
+        initialize: function () {
             var self = this;
-            this.contest = new Contest({id:id});
-            this.contest.fetch({
+
+            // Collection to track all contests
+            this.allContests = new Contests();
+
+            // Displayed collection which may be filtered
+            this.filteredContests = new Contests();
+
+            this.allContests.fetch({
                 success: function () {
+                    self.filteredContests = self.allContests.clone();
                     self.render();
                 },
                 error: function () {
                     console.log("Error");
                 }
             });
+
         },
         render: function () {
+
             var getDate = function (date) {
                 var tempDate = new Date(date);
                 return ("0" + tempDate.getDate()).slice(-2) + '.' + ("0" + (tempDate.getMonth() + 1)).slice(-2) + '.' + tempDate.getFullYear();
@@ -47,13 +70,13 @@ define([
                     case 'GENTLEMEN': return 'Menn';
                     default: return division;
                 }
-            }
+            };
 
-            this.$el.html(this.template({contest: this.contest.toJSON()['contest'], participants: this.contest.toJSON()['participants']   , getDate: getDate, getTime: getTime, getCategory: getCategory, getDivision: getDivision}));
+            this.$el.html(this.template({contests: this.filteredContests.toJSON(), getDate: getDate, getTime: getTime, getCategory: getCategory, getDivision: getDivision}));
             return this;
         }
     });
 
-    return ContestView;
+    return ResultView;
 
 });
