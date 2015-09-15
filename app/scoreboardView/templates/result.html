@@ -1,44 +1,4 @@
-<div class="table-responsive">
-    <br><br><br>
-
-    <div class="col-md-4 col-md-offset-4">
-        <div class="btn-group btn-group-justified" role="group" aria-label="...">
-
-            <div class="btn-group" role="group">
-                <button role="button" class="btn btn-primary button-filter" data-year="2013">2013</button>
-            </div>
-            <div class="btn-group" role="group">
-                <button role="button" class="btn btn-primary button-filter" data-year="2014">2014</button>
-            </div>
-            <div class="btn-group" role="group">
-                <button role="button" class="btn btn-primary button-filter" data-year="2015">2015</button>
-            </div>
-
-        </div>
-    </div>
-    <br><br><br>
-
-
-    <div class="col-md-4 col-md-offset-4">
-        <div class="btn-group btn-group-justified" role="group" aria-label="...">
-            <div class="btn-group" role="group">
-                <button role="button" class="btn btn-primary button-all">Alle</button>
-            </div>
-            <div class="btn-group" role="group">
-                <button role="button" class="btn btn-primary button-filter" data-division="MEN">Gutt</button>
-            </div>
-            <div class="btn-group" role="group">
-                <button role="button" class="btn btn-primary button-filter" data-division="GENTLEMEN">Menn</button>
-            </div>
-            <div class="btn-group" role="group">
-                <button role="button" class="btn btn-primary button-filter" data-division="WOMEN">Jente</button>
-            </div>
-        </div>
-    </div>
-    <br><br><br>
-
-
-    <table class="table table-hover table-bordered">
+<table class="table table-hover table-bordered">
         <thead>
         <tr>
             <th>Rank</th>
@@ -46,7 +6,7 @@
             <th>Snitt</th>
             <th>Antall</th>
 
-        <% _.each(scoreboard.disciplines, function(discipline) { %>
+            <% _.each(scoreboard.disciplines, function(discipline) { %>
 
             <% if (discipline.category === "ENDURANCE"){ %>
             <th bgcolor="#FF6699">
@@ -98,5 +58,3 @@
 
         </tbody>
     </table>
-</div>
-</div>

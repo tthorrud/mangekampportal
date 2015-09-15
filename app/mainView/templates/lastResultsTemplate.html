@@ -7,19 +7,28 @@
 <body>
 
 <div class="panel panel-info">
-    <div class="panel-heading"><strong>Nyeste Resultater</strong></div>
+    <div class="panel-heading"><strong>Nyeste Resultater</strong> (<a href="#scoreboard">Flere resultater</a>)</div>
     <div class="panel-body">
-        <p><strong>Jenter - <%= lastResults.WOMEN[0].contest.discipline.name %> - <%= getDate(lastResults.WOMEN[0].contest.date) %></strong></p>
+        <p><strong>Jenter -
+            <a href="#contests/<%= lastResults.WOMEN[0].contest.id %>">
+                <%= lastResults.WOMEN[0].contest.discipline.name %> - <%= getDate(lastResults.WOMEN[0].contest.date) %></a>
+        </strong></p>
         <p> <%= lastResults.WOMEN[0].contestant.fullName %></p>
         <p><%= lastResults.WOMEN[1].contestant.fullName %></p>
         <p><%= lastResults.WOMEN[2].contestant.fullName %></p>
 
-        <p><strong>Gutter - <%= lastResults.MEN[0].contest.discipline.name %> - <%= getDate(lastResults.MEN[0].contest.date) %></strong></p>
+        <p><strong>Gutter -
+            <a href="#contests/<%= lastResults.MEN[0].contest.id %>">
+                <%= lastResults.MEN[0].contest.discipline.name %> - <%= getDate(lastResults.MEN[0].contest.date) %>
+             </a></strong></p>
         <p><%= lastResults.MEN[0].contestant.fullName %> </p>
         <p><%= lastResults.MEN[1].contestant.fullName %></p>
         <p><%= lastResults.MEN[2].contestant.fullName %></p>
 
-        <p><strong>Menn - <%= lastResults.GENTLEMEN[0].contest.discipline.name %> - <%= getDate(lastResults.GENTLEMEN[0].contest.date) %></strong></p>
+        <p><strong>Menn -
+            <a href="#contests/<%= lastResults.GENTLEMEN[0].contest.id %>">
+                <%= lastResults.GENTLEMEN[0].contest.discipline.name %> - <%= getDate(lastResults.GENTLEMEN[0].contest.date) %>
+        </a></strong></p>
         <p><%= lastResults.GENTLEMEN[0].contestant.fullName %> </p>
         <p><%= lastResults.GENTLEMEN[1].contestant.fullName %></p>
         <p><%= lastResults.GENTLEMEN[2].contestant.fullName %></p>
