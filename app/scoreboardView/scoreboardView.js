@@ -4,10 +4,10 @@
 'use strict';
 
 define([
-    'underscore',
+    '../../bower_components/underscore/underscore',
     'backbone',
     'text!templates/scoreboard.html',
-    'model/scoreboard'
+    'scoreboardView/models/scoreboard'
 ], function (_, Backbone, ScoreboardTemplate, Scoreboard) {
 
     var ScoreboardView = Backbone.View.extend({
