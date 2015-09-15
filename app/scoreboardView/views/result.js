@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!scoreboardView/templates/scoreboardTemplate.html',
+    'text!scoreboardView/templates/result.html',
     'scoreboardView/models/scoreboard'
 ], function ($, _, Backbone, ScoreboardTemplate, Scoreboard) {
 
@@ -14,22 +14,25 @@ define([
         template: _.template(ScoreboardTemplate),
         filterScoreboard: function (year, division) {
 
-            //???
-            this.filteredScoreboard.set(this.scoreboard.filter(function(scoreboard) {
+            var self = this;
+            this.scoreboard.fetch({
+                url: "http://localhost:8080/rest/score/"+ year + "/" + division,
+                success: function () {
+                    console.log("Success");
+                    self.render();
+                },
+                error: function () {
+                    console.log("D");
+                }
+            });
 
-                var tempYear = ((scoreboard.get('year') == year));
-                var tempDivision = ((scoreboard.get('division') === division));
-
-                return (tempYear && tempDivision);
-            }));
-
-            this.render();
         },
 
         initialize: function() {
             var self = this;
             this.scoreboard = new Scoreboard();
             this.scoreboard.fetch({
+                url: "http://localhost:8080/rest/score/2015/MEN",
                 success: function () {
                     self.render();
                 },

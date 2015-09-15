@@ -7,7 +7,7 @@ define([
 
     var Scoreboard = Backbone.Model.extend({
 
-        urlRoot: "http://localhost:8080/rest/score"
+      //  urlRoot: "http://localhost:8080/rest/score"
 
     });
 
