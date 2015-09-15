@@ -1,13 +1,10 @@
-/**
- * Created by torbein on 01.09.15.
- */
 'use strict';
 
 define([
     'jquery',
     'underscore',
     'backbone',
-    'model/contestant'
+    'contestsView/models/contest'
 ], function(jquery, _, Backbone, Contest){
 
     var Contests = Backbone.Collection.extend({
