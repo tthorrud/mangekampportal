@@ -8,11 +8,12 @@ define([
     'underscore',
     'backbone',
     'text!mainView/templates/nextContestTemplate.html',
-    'mainView/models/nextContestModel'
-], function (jquery, _, Backbone, NextContestTemplate, Model) {
+    'mainView/models/nextContestModel',
+    'mainView/models/nextContestStatusModel'
+], function (jquery, _, Backbone, NextContestTemplate, nextContestModel, StatusModel) {
 
     var NextContestView = Backbone.View.extend({
-        model: Model,
+        model: nextContestModel,
         el: '#nextContest',
         template: _.template(NextContestTemplate),
 
@@ -23,9 +24,20 @@ define([
 
         initialize: function(){
             var self = this;
-            this.model = new Model();
-            this.feedback = '';
-            this.model.fetch({
+            this.nextContestModel = new nextContestModel();
+            this.statusModel = new StatusModel();
+
+            this.statusModel.fetch({
+                success: function (response) {
+                    self.setStatus(response.attributes.Status);
+                    self.render();
+                },
+                error: function () {
+                    console.log("noe rart skjedde her");
+                }
+            });
+
+            this.nextContestModel.fetch({
                 success: function(){
                     self.render();
                 },
@@ -35,17 +47,23 @@ define([
             });
         },
 
+        setStatus: function(status){
+              if (status === true) {
+                  this.feedback = "Du er påmeldt"
+              } else {
+                  this.feedback = "Du er ikke påmeldt"
+              }
+        },
+
         newSignup:function(){
-            console.log("SIGNUP");
-            var postModel = new Model();
+            var postModel = new nextContestModel();
             postModel.save();
             this.feedback = "Du er påmeldt";
             this.render();
         },
 
         newSignOff: function(){
-            console.log("SIGNOFF");
-            var postModel = new Model({
+            var postModel = new nextContestModel({
                 id: 169
             });
             postModel.destroy({
@@ -58,7 +76,7 @@ define([
         },
 
         render: function () {
-            this.$el.html(this.template({nextContest: this.model.toJSON(), feedback: this.feedback}));
+            this.$el.html(this.template({nextContest: this.nextContestModel.toJSON(), feedback: this.feedback}));
             return this;
         }
 
