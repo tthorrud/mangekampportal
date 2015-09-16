@@ -5,8 +5,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/contestants.html',
-    'collections/contestants'
+    'text!contestantView/templates/contestants.html',
+    'contestantView/collections/contestants'
 ], function (jquery, _, Backbone, ContestantsTemplate, Contestants) {
 
 

@@ -4,10 +4,10 @@
 'use strict';
 
 define([
-    'jquery',
+    '../../../bower_components/jquery/dist/jquery',
     'underscore',
     'backbone',
-    'model/contestant'
+    'contestantView/models/contestant'
 ], function(jquery, _, Backbone, Contestant){
 
     var Contestants = Backbone.Collection.extend({

@@ -3,8 +3,8 @@
 define([
     'underscore',
     'backbone', 
-    'text!templates/contestant.html',
-    'model/contestant'
+    'text!contestantView/templates/contestant.html',
+    'contestantView/models/contestant'
     ], function (_, Backbone, ContestantTemplate, Contestant) {
 
         var contestantView = Backbone.View.extend({
