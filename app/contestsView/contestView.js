@@ -47,7 +47,7 @@ define([
                     case 'GENTLEMEN': return 'Menn';
                     default: return division;
                 }
-            }
+            };
 
             this.$el.html(this.template({contest: this.contest.toJSON()['contest'], participants: this.contest.toJSON()['participants']   , getDate: getDate, getTime: getTime, getCategory: getCategory, getDivision: getDivision}));
             return this;

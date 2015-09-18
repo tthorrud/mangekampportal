@@ -29,7 +29,7 @@ define([
 
             this.statusModel.fetch({
                 success: function (response) {
-                    self.setStatus(response.attributes.Status);
+                    self.setStatus(response.attributes.status);
                     self.render();
                 },
                 error: function () {
