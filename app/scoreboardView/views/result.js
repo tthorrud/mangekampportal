@@ -18,7 +18,6 @@ define([
             this.scoreboard.fetch({
                 url: "http://localhost:8080/rest/score/"+ year + "/" + division,
                 success: function () {
-                    console.log("Success");
                     self.render();
                 },
                 error: function () {

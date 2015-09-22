@@ -1,10 +1,11 @@
+
 <table class="table table-hover table-bordered">
         <thead>
         <tr>
             <th>Rank</th>
             <th>Navn</th>
-            <th>Snitt</th>
-            <th>Antall</th>
+            <th>Snittrank</th>
+            <th>Antall øvelser</th>
 
             <% _.each(scoreboard.disciplines, function(discipline) { %>
 
@@ -32,24 +33,25 @@
 
         <% _.each(scoreboard.scoreRows, function(scoreboardRow) { %>
         <tr>
-            <th><%= scoreboardRow.rank %></th>
-            <th><%= scoreboardRow.contestant.fullName %></th>
-            <th><%= parseFloat((scoreboardRow.finalScore).toFixed(2)) %></th>
-            <th><%= scoreboardRow.count %></th>
-            <th><%= scoreboardRow.participations[0].rank %></th>
-            <th><%= scoreboardRow.participations[1].rank %></th>
-            <th><%= scoreboardRow.participations[2].rank %></th>
-            <th><%= scoreboardRow.participations[3].rank %></th>
-            <th><%= scoreboardRow.participations[4].rank %></th>
-            <th><%= scoreboardRow.participations[5].rank %></th>
-            <th><%= scoreboardRow.participations[6].rank %></th>
-            <th><%= scoreboardRow.participations[7].rank %></th>
-            <th><%= scoreboardRow.participations[8].rank %></th>
-            <th><%= scoreboardRow.participations[9].rank %></th>
-            <th><%= scoreboardRow.participations[10].rank %></th>
-            <th><%= scoreboardRow.participations[11].rank %></th>
-            <th><%= scoreboardRow.participations[12].rank %></th>
-            <th><%= scoreboardRow.participations[13].rank %></th>
+            <td><%= scoreboardRow.rank %></td>
+
+            <td><a href="#contestant/<%= scoreboardRow.contestant.id %>"><%= scoreboardRow.contestant.fullName %></a></td>
+            <td><%= parseFloat((scoreboardRow.finalScore).toFixed(2)) %></td>
+            <td><%= scoreboardRow.count %></td>
+            <td><%= scoreboardRow.participations[0].rank %></td>
+            <td><%= scoreboardRow.participations[1].rank %></td>
+            <td><%= scoreboardRow.participations[2].rank %></td>
+            <td><%= scoreboardRow.participations[3].rank %></td>
+            <td><%= scoreboardRow.participations[4].rank %></td>
+            <td><%= scoreboardRow.participations[5].rank %></td>
+            <td><%= scoreboardRow.participations[6].rank %></td>
+            <td><%= scoreboardRow.participations[7].rank %></td>
+            <td><%= scoreboardRow.participations[8].rank %></td>
+            <td><%= scoreboardRow.participations[9].rank %></td>
+            <td><%= scoreboardRow.participations[10].rank %></td>
+            <td><%= scoreboardRow.participations[11].rank %></td>
+            <td><%= scoreboardRow.participations[12].rank %></td>
+            <td><%= scoreboardRow.participations[13].rank %></td>
 
 
             <% }); %>
