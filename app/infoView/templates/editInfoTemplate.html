@@ -1,0 +1,26 @@
+<ol class="breadcrumb">
+    <li><a href="">Hjem</a></li>
+    <li><a href="#info">Informasjon</a></li>
+    <li class="active">Endre informasjon</li>
+</ol>
+
+<script type="text/javascript" src="../../../bower_components/tinymce/tinymce.min.js"></script>
+
+<script type="text/javascript">
+        tinymce.init({
+        	selector: "#mytextarea",
+    		plugins: [
+            "code", "charmap", "link", "image",
+            ],
+            toolbar: [
+                "undo redo | styleselect | bold italic underscore | alignleft aligncenter alignright | bullist numlist | outdent indent  | link image | charmap code"
+
+            ],
+			min_height: 400
+		});
+    </script>
+
+    <form method="post">
+        <textarea id="mytextarea"><%= info.info %></textarea>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
