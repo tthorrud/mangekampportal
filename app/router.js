@@ -15,9 +15,10 @@ define([
     'disciplineView/views/add_disciplinesView',
     'disciplineView/views/edit_disciplineView',
     'disciplineView/views/disciplineView',
-    'infoView/infoView'
+    'infoView/infoView',
+    'infoView/editInfoView'
 ], function (jquery, _, Backbone, DisciplinesView, ContestantsView, NavigationView, MainView, ScoreboardView,
-             ContestsView, ContestView, ContestantView, AddDisciplineView, EditDisciplineView, DisciplineView, InfoView) {
+             ContestsView, ContestView, ContestantView, AddDisciplineView, EditDisciplineView, DisciplineView, InfoView, EditInfoView) {
 
 
     var Router = Backbone.Router.extend({
@@ -34,7 +35,8 @@ define([
             'disciplines/add': 'addDisciplineView',
             'disciplines/edit/:id': 'editDiscipline',
             'disciplines/:id':'disciplineView',
-            'info': 'infoView'
+            'info': 'infoView',
+            'info/edit': 'editInfoView',
         },
 
         initialize: function () {
@@ -87,6 +89,10 @@ define([
         infoView: function () {
             var infoView = new InfoView();
             return infoView;
+        },
+        editInfoView: function () {
+            var editInfoView = new EditInfoView();
+            return editInfoView;
         }
 
     });
